@@ -1,0 +1,11 @@
+
+
+import 'package:get/get.dart';
+import 'package:login_signup/controller/auth_controller.dart';
+
+class AuthBinding extends Bindings{
+  @override
+  void dependencies() {
+    Get.lazyPut<AuthController>(()=>AuthController());
+  }
+}

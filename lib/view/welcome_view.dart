@@ -9,19 +9,23 @@ class WelcomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-           appBar: AppBar(
-            title: Text("Welcome"),
-           ),
-           body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: ()=>Get.offAllNamed(AppRoute.LOGIN),
-                   child: Text("Login"))
-              ],
+      appBar: AppBar(title: Text("Welcome")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => Get.offAllNamed(AppRoute.LOGIN),
+              child: Text("Login"),
             ),
-           ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => Get.offAllNamed(AppRoute.SIGNUP),
+              child: Text("SignUp"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:login_signup/controller/auth_controller.dart';
+import 'package:login_signup/routes/app_route.dart';
 import 'package:login_signup/widget/auth_textfield.dart';
 
 class LoginView extends StatelessWidget {
@@ -21,8 +22,10 @@ class LoginView extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           
             child: Column(
+              
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 80,),
                 AuthTextfield(
                   controller: _emailController, 
                   label:'email', icon: Icons.email
@@ -42,6 +45,17 @@ class LoginView extends StatelessWidget {
                    }, child: Text("Login"))
                 
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    
+                    Text("Do you have an acount?"),
+                    SizedBox(width: 20,),
+                    TextButton(onPressed: ()=>Get.toNamed(AppRoute.SIGNUP)
+                        
+                    , child:Text("SignUp"))
+                  ],
+                )
               ],
             ),
           

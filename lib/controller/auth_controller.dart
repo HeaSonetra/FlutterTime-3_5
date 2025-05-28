@@ -9,15 +9,18 @@ class AuthController extends GetxController {
      final RxString email=''.obs;
      final box=GetStorage();
 
-     final Map<String,String>  _user={
-      'demo@gmail.com':'pass123'
-     };
+      
+
+    void onInit() {
+      super.onInit();
+      GetStorage.init(); // Initialize GetStorage
+    }
      
      Future<void> login(String email,String pass)async{
         isloading.value=true;
         await Future.delayed(Duration(seconds: 1));
-
-        if(_user[email]==pass){
+        final storePassword=box.read(email);
+        if(storePassword!=null&&storePassword==pass){
           isloading.value=true;
           this.email.value=email;
           Get.offAllNamed('/home');
@@ -27,17 +30,32 @@ class AuthController extends GetxController {
         }
         isloading.value=false;
      }
-     Future<void> singUp(String email,String pass)async{
+     Future<void> singUp(
+      String email,
+      String password,
+      String confirmPassword,
+     )async{
         isloading.value=true;
         await Future.delayed(Duration(seconds: 1));
-
-        if(_user.containsKey(email)){
-            Get.snackbar('Error','email already exists');
+        
+        if(password==confirmPassword){
+          final check=box.read(email);
+          if(check==null){
+              box.write(email,password);
+              Get.snackbar('Success', "Signup successful");
+              Get.offAllNamed('/login');
+          }else{
+              Get.snackbar('Error', "This email already exists");
+          }
+          
         }else{
-            isloading.value=true;
-            Get.offAllNamed('/login');
-            Get.snackbar('success','create  successfully');
+          Get.snackbar('Error', "Password not match");
         }
-        isloading.value=false;
+       isloading.value=false;
+     }
+
+     var isPasswordHind=true.obs;
+     void toggleHindPass(){
+          isPasswordHind.value=!isPasswordHind.value;
      }
 }

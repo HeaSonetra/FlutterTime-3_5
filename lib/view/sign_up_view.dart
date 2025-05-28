@@ -46,11 +46,8 @@ class SignUpView extends StatelessWidget {
               Obx(()=>(_authController.isloading.value)?CircularProgressIndicator():
               ElevatedButton(
                 onPressed: (){
-                  if(_passController.text!=_confirmPassController.text){
-                    Get.snackbar('Error', 'Passwords not match');
-                    return;
-                  }
-                  _authController.singUp(_emailController.text.trim(), _passController.text.trim());
+                  
+                  _authController.singUp(_emailController.text.trim(), _passController.text.trim(),_confirmPassController.text.trim());
                 },
                 child: Text('SignUp')))
             ],

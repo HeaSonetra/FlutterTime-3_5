@@ -1,0 +1,4 @@
+
+class Imageurl {
+  static const String profile='assets/images/profile.jpg';
+}

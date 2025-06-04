@@ -20,7 +20,7 @@ class GetStartView extends StatelessWidget {
              Center(
                child: Positioned(
                 child: InkWell(
-                  onTap:()=> Get.offAllNamed('/home'),
+                  onTap:()=> Get.offAllNamed('/mainview'),
                   child: Container(
                     width: AppSize.width(0.6),
                     height: AppSize.height(0.08),

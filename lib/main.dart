@@ -1,3 +1,4 @@
+import 'package:fashion_state/App/module/home/views/get_start_view.dart';
 import 'package:fashion_state/App/module/home/views/home_view.dart';
 import 'package:fashion_state/App/routes/app_page.dart';
 import 'package:fashion_state/App/routes/app_routes.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: _themeController.them,
+        
       ),
     );
   }

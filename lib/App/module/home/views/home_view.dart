@@ -137,6 +137,35 @@ class HomeView extends StatelessWidget {
                             ),
                         ),
                       ),
+                      Positioned(
+                        bottom: AppSize.height(0.08),
+                        right: AppSize.width(0.07),
+                        child:Container(
+                                width: AppSize.width(0.075),
+                                height: AppSize.height(0.036),
+                                decoration: BoxDecoration(
+                                  //borderRadius: BorderRadius.circular(10),
+                                  color: Colors.black,
+                                  shape: BoxShape.circle
+                                  
+                                ),
+                                child: Center(
+                                  child: IconButton(
+                                    onPressed: (){}, icon: Icon(Icons.favorite,color: Colors.amber,size: 18,)),
+                                ),
+                        ) 
+                      ),
+                      Positioned(
+                        left: AppSize.width(0.02),
+                        bottom: AppSize.height(0.016),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(product.name,style: AppFont.subtitle.copyWith(fontWeight: FontWeight.w600,color: Colors.black),),
+                            Text("\$${product.price}",style: AppFont.title,),
+                          ],
+                        )
+                      )
                     ],
                   );
                 },

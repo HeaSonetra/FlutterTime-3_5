@@ -1,4 +1,5 @@
 
+import 'package:fashion_state/App/module/home/views/list_view.dart';
 import 'package:fashion_state/App/module/home/views/favorite_view.dart';
 import 'package:fashion_state/App/module/home/views/get_start_view.dart';
 import 'package:fashion_state/App/module/home/views/history_view.dart';
@@ -34,6 +35,10 @@ class AppPage {
       GetPage(
         name: AppRoutes.PROFILE,
         page: ()=>ProfileView(),
+      ),
+      GetPage(
+        name: AppRoutes.LISTVIEW,
+        page: ()=>List_View(),
       ),
   ];
 }

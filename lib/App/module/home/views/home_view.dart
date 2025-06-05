@@ -26,19 +26,25 @@ class HomeView extends StatelessWidget {
               Text("Get pupular fashion from home", style: AppFont.subtitle),
               SizedBox(height: AppSize.height(0.02)),
 
-              Container(
-                width: AppSize.width(0.9),
-                height: AppSize.height(0.05),
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: AppColor.forceground,
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'Search the clothes you need',
-                    border: InputBorder.none,
+              GestureDetector(
+                onTap: () => Get.toNamed('/listview'),
+                child: Container(
+                  width: AppSize.width(0.9),
+                  height: AppSize.height(0.05),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: AppColor.forceground,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, color: AppColor.textPrimary),
+                      SizedBox(width: AppSize.width(0.03)),
+                      Text(
+                        "Search the cloth you need",
+                        style: TextStyle(color: AppColor.grey),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -101,7 +107,9 @@ class HomeView extends StatelessWidget {
               SizedBox(height: AppSize.height(0.03)),
 
               GridView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
+
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1 / 1.2,
@@ -110,7 +118,7 @@ class HomeView extends StatelessWidget {
                 ),
                 itemCount: _homeController.product.length,
                 itemBuilder: (context, index) {
-                  final product= _homeController.product[index];
+                  final product = _homeController.product[index];
                   return Stack(
                     children: [
                       Positioned(
@@ -131,29 +139,35 @@ class HomeView extends StatelessWidget {
                           width: AppSize.width(0.4),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            color: Color.fromARGB(255, 226, 222, 222),),
-                            child: Center(
-                              child: Image(image: AssetImage(product.imageUrl)),
-                            ),
+                            color: Color.fromARGB(255, 226, 222, 222),
+                          ),
+                          child: Center(
+                            child: Image(image: AssetImage(product.imageUrl)),
+                          ),
                         ),
                       ),
                       Positioned(
                         bottom: AppSize.height(0.08),
                         right: AppSize.width(0.07),
-                        child:Container(
-                                width: AppSize.width(0.075),
-                                height: AppSize.height(0.036),
-                                decoration: BoxDecoration(
-                                  //borderRadius: BorderRadius.circular(10),
-                                  color: Colors.black,
-                                  shape: BoxShape.circle
-                                  
-                                ),
-                                child: Center(
-                                  child: IconButton(
-                                    onPressed: (){}, icon: Icon(Icons.favorite,color: Colors.amber,size: 18,)),
-                                ),
-                        ) 
+                        child: Container(
+                          width: AppSize.width(0.075),
+                          height: AppSize.height(0.036),
+                          decoration: BoxDecoration(
+                            //borderRadius: BorderRadius.circular(10),
+                            color: Colors.black,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.favorite,
+                                color: Colors.amber,
+                                size: 18,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                       Positioned(
                         left: AppSize.width(0.02),
@@ -161,11 +175,17 @@ class HomeView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(product.name,style: AppFont.subtitle.copyWith(fontWeight: FontWeight.w600,color: Colors.black),),
-                            Text("\$${product.price}",style: AppFont.title,),
+                            Text(
+                              product.name,
+                              style: AppFont.subtitle.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text("\$${product.price}", style: AppFont.title),
                           ],
-                        )
-                      )
+                        ),
+                      ),
                     ],
                   );
                 },

@@ -6,4 +6,5 @@ class AppRoutes {
   static final HISTORY='/history';
   static final FAVORITE='/favorite';
   static final PROFILE='/profile';
+  static final LISTVIEW='/listview';
 }

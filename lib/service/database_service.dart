@@ -1,12 +1,10 @@
-
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:sqlite_state/model/task_model.dart';
 
 class DatabaseService  {
-  static DatabaseService instance=DatabaseService._();
+  static final DatabaseService instance=DatabaseService._();
   static Database? _db;
   final _table="tasks";
   
@@ -31,6 +29,7 @@ class DatabaseService  {
    Future<List<TaskModel>> getTasks()async{
      final database=await db;
      final result=await database.query(_table);
+     //await database.delete(_table);
      return result.map((e) => TaskModel.fromMap(e)).toList();
    }
 
@@ -40,6 +39,14 @@ class DatabaseService  {
       'content': content,
       'status': 0,
     });
+  }
+  Future<void> updateTask(TaskModel task) async {
+    final database = await db;
+    await database.update(_table, task.toMap(),where: "id=?",whereArgs: [task.id]);
+  }
+  Future<void> deleteTask(int id) async {
+    final database = await db;
+    await database.delete(_table,where: "id=?",whereArgs: [id]);
   }
   
 }

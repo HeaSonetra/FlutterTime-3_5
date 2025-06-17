@@ -14,10 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home:BlocProvider(
-          create: (_)=>TaskBloc(TasksRepo())..add(LoadTask()),
-          child: HomePage(),
+       home:BlocProvider(
+        create: (_)=>TaskBloc(TasksRepo())..add(LoadTask()),
+        child: HomePage(),
         ),
+        
     );
   }
 }

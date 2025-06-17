@@ -27,6 +27,15 @@ class TaskBloc extends  Bloc<TaskEvent,TaskState>  {
         await repo.addTask(event.content);
         add(LoadTask());
     });
+
+    on<UpdateTask> ((event,emit)async{
+       await repo.updateTask(event.task);
+       add(LoadTask());
+    } );
+    on<DeleteTask> ((event,emit)async{
+       await repo.deletTask(event.id);
+       add(LoadTask());
+    } );
     
   }
 }

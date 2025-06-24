@@ -43,14 +43,6 @@ class SignupPage extends StatelessWidget {
                     SnackBar(content: Text("Please enter all field")),
                   );
                 } else {
-                  //  try{
-                  //     FirebaseAuth.instance.createUserWithEmailAndPassword(email: mail, password: pass).then((value){
-                  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Create success")));
-                  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginPage()));
-                  //     });
-                  //  }catch(e){
-                  //   print(e);
-                  //  }
                   try {
                     UserCredential userCredential = await FirebaseAuth.instance
                         .createUserWithEmailAndPassword(
@@ -83,7 +75,11 @@ class SignupPage extends StatelessWidget {
               child: Text("SignUp"),
             ),
             SizedBox(height: 40),
-            Text("Already have an acount? click here"),
+            InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage()));
+              },
+              child: Text("Already have an acount? click here")),
           ],
         ),
       ),
